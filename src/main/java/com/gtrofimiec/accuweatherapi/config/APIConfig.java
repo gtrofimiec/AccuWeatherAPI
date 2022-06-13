@@ -14,6 +14,6 @@ public class APIConfig {
     private String LocationByNameEndpoint;
     @Value("${api.prod.forecast.endpoint}")
     private String ForecastLocation;
-    @Value("${api.key}")
+    @Value("${accuweather.api.key}")
     private String apiKey;
 }

@@ -12,9 +12,8 @@ import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestClientException;
 
 import java.util.Arrays;
-import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -39,7 +38,7 @@ public class AccuWeatherAPITest {
         }
 
         //Then
-        assertFalse(Optional.of(locationDto).isEmpty());
+        assertSame("Chełm", locationDto.getName());
     }
 
     @Test
