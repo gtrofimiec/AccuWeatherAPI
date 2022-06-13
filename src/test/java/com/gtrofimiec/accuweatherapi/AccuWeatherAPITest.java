@@ -4,14 +4,19 @@ import com.gtrofimiec.accuweatherapi.domain.ForecastDto;
 import com.gtrofimiec.accuweatherapi.domain.LocationDto;
 import com.gtrofimiec.accuweatherapi.facade.APIFacade;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestClientException;
 
 import java.util.Arrays;
+import java.util.Optional;
 
+import static org.junit.Assert.*;
+
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class AccuWeatherAPITest {
 
@@ -22,16 +27,19 @@ public class AccuWeatherAPITest {
     public void getLocationFromPostcodeTest() {
 
         //Given
+        LocationDto locationDto = new LocationDto();
         String postCode = "22-100";
 
         //When
-        //Then
         try {
-            LocationDto locationDto = apiFacade.getLocationKeyFromPostcode(postCode);
+            locationDto = apiFacade.getLocationKeyFromPostcode(postCode);
             System.out.println("Location key for postcode " + postCode + ": " + locationDto.getLocationKey());
         } catch(HttpStatusCodeException e) {
             System.out.println(e);
         }
+
+        //Then
+        assertFalse(Optional.of(locationDto).isEmpty());
     }
 
     @Test
